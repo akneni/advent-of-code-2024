@@ -1,0 +1,12 @@
+[project]
+authors = ["Anish Kanthamneni <109305222+akneni@users.noreply.github.com>"]
+channels = ["conda-forge", "https://conda.modular.com/max"]
+description = "Add a short description here"
+name = "advent-of-code-2024"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+max = ">=24.5.0,<25"
