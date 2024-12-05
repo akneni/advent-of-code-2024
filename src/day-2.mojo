@@ -1,3 +1,6 @@
+# import time
+from python import Python
+
 fn load_data(filepath: String) raises -> List[List[Int]]:
     var reports = List[List[Int]]()
 
@@ -43,30 +46,53 @@ fn part_1() raises -> Int:
 
 fn part_2() raises -> Int:
     var reports = load_data('data/day-2.txt')
-    
+
     var acc: Int = 0
-
     for rep in reports:
-        var num_errors: Int = 0
-        var global_dir: Int8 = 0
-        for i in range(1, len(rep[])):
-            var dir: Int8 = 1 if rep[][i] > rep[][i-1] else -1
-            if rep[][i] == rep[][i-1]:
-                num_errors += 1
-                continue
-            elif abs(rep[][i] - rep[][i-1]) > 3:
-                num_errors += 1
-                continue
-            
-            if global_dir != 0 and dir != global_dir:
-                num_errors += 1
-                continue
-            elif dir != global_dir:
-                global_dir = dir
-            
-        if num_errors <= 1: acc += 1    
-
+        for i in range(-1, len(rep[])):
+            if is_valid(rep[], i):
+                acc += 1
+                break
     return acc
+
+fn is_valid(rep: List[Int], mask: Int) -> Bool:
+    var global_dir: Int8 = 0
+    var i = 1
+    var j = 0
+    while True:
+        if i == mask:
+            i += 1
+        elif j == mask:
+            j += 1
+            if j == i: i += 1
+        if i >= len(rep):
+            break
+
+        var dir: Int8 = 1 if rep[i] > rep[j] else -1
+        if rep[i] == rep[j]:
+            return False
+        elif abs(rep[i] - rep[j]) > 3:
+            return False
+        if global_dir != 0 and dir != global_dir:
+            return False
+        elif dir != global_dir:
+            global_dir = dir
+        
+        i += 1
+        j += 1
+            
+    return True
+
+fn display(x: List[Bool]):
+    var s: String = "["
+    for i in x:
+        if i[]:
+            s += "True"
+        else:
+            s += "False"
+        s += ", "
+    s += "]"
+    print(s)
 
 
 fn main() raises:
