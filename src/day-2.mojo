@@ -1,6 +1,3 @@
-# import time
-from python import Python
-
 fn load_data(filepath: String) raises -> List[List[Int]]:
     var reports = List[List[Int]]()
 
@@ -82,17 +79,6 @@ fn is_valid(rep: List[Int], mask: Int) -> Bool:
         j += 1
             
     return True
-
-fn display(x: List[Bool]):
-    var s: String = "["
-    for i in x:
-        if i[]:
-            s += "True"
-        else:
-            s += "False"
-        s += ", "
-    s += "]"
-    print(s)
 
 
 fn main() raises:
